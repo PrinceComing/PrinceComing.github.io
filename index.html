@@ -209,7 +209,13 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a = <span class="number">20</span>;</span><br><span class="line">	<span class="keyword">int</span> *p=&amp;a;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//int *p;</span></span><br><span class="line">	<span class="comment">//p = &amp;a; </span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//在32位操作系统下，指针是4个字节空间大小，不管是什么数据类型</span></span><br><span class="line">	<span class="comment">//在64位操作系统下，指针是占8个字节空间大小</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"sizeof (int *)="</span> &lt;&lt; <span class="keyword">sizeof</span>(<span class="keyword">int</span> *) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"sizeof(int *)="</span> &lt;&lt; <span class="keyword">sizeof</span>(p) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"sizeof (float *)="</span> &lt;&lt; <span class="keyword">sizeof</span>(<span class="keyword">float</span>*) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"sizeof (double *)="</span> &lt;&lt; <span class="keyword">sizeof</span>(<span class="keyword">double</span>*) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"sizeof (char *)="</span> &lt;&lt; <span class="keyword">sizeof</span>(<span class="keyword">char</span>*) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    </span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         
       
-
+<!-- 文章版权 -->
+      
+      
+      
+        <div hidden="hidden"></div>
+      
+<!--  -->
       
     </div>
     <div class="article-info article-info-index">
@@ -295,7 +301,13 @@
 </blockquote>
         
       
-
+<!-- 文章版权 -->
+      
+      
+      
+        <div hidden="hidden"></div>
+      
+<!--  -->
       
     </div>
     <div class="article-info article-info-index">
@@ -475,7 +487,13 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//1、前置递增</span></span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">10</span>;</span><br><span class="line">    ++a;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"a="</span> &lt;&lt; a &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//2、后置递增</span></span><br><span class="line">    <span class="keyword">int</span> b = <span class="number">10</span>；</span><br><span class="line">    b++;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"b="</span> &lt;&lt; b &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//3、前置递增和后置递增的区别</span></span><br><span class="line">    <span class="comment">//前置递增 先让变量+1 然后进行表达式运算</span></span><br><span class="line">    <span class="comment">//后置递增 先进行表达式运算 后让变量+1</span></span><br><span class="line">    <span class="keyword">int</span> c=<span class="number">10</span>;</span><br><span class="line">    <span class="keyword">int</span> d=++c*<span class="number">10</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"c="</span> &lt;&lt; c &lt;&lt; <span class="built_in">endl</span>; <span class="comment">//输出结果c=11</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"d="</span> &lt;&lt; d &lt;&lt; <span class="built_in">endl</span>; <span class="comment">//输出结果d=110</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> x=<span class="number">10</span>；</span><br><span class="line">    <span class="keyword">int</span> y=x++*<span class="number">10</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"x="</span> &lt;&lt; x &lt;&lt;<span class="built_in">endl</span>; <span class="comment">//输出结果x=11</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"y="</span> &lt;&lt; y &lt;&lt;<span class="built_in">endl</span>; <span class="comment">//输出结果y=100</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//后置递减和前置递减 同上</span></span><br><span class="line">    system(<span class="string">"pause"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>；</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         
       
-
+<!-- 文章版权 -->
+      
+      
+      
+        <div hidden="hidden"></div>
+      
+<!--  -->
       
     </div>
     <div class="article-info article-info-index">
@@ -588,7 +606,13 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 宏常量</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> day 7</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"一周总共有："</span> &lt;&lt; <span class="string">" 天"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="comment">//day=8;  //会报错，因为宏常量不可以修改</span></span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> month = <span class="number">12</span>;</span><br><span class="line">    <span class="comment">//month = 24; //会报错，const修饰的变量也称为常量</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"一年总共有："</span> &lt;&lt; <span class="string">" 月"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    system(<span class="string">"pause"</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         
       
-
+<!-- 文章版权 -->
+      
+      
+      
+        <div hidden="hidden"></div>
+      
+<!--  -->
       
     </div>
     <div class="article-info article-info-index">
@@ -807,8 +831,21 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧~&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家&lt;br&gt;&lt;br&gt;枯木逢春&lt;br&gt;人无二度再少年</div>
-  	  	
+  	  		<!-- <div class="aboutme-wrap" id="js-aboutme">很惭愧~&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家&lt;br&gt;&lt;br&gt;枯木逢春&lt;br&gt;人无二度再少年</div> -->
+          <div class="aboutme-wrap">
+            <div style="display:;">
+              <script type="text/javascript" src="https://api.lwl12.com/hitokoto/v1?encode=js&charset=utf-8"></script>
+              <p style="margin:0 20px 0 20px;">
+                <span id="lwlhitokoto">
+                  <script>
+                    lwlhitokoto();
+                  </script>
+                </span>
+              </p>
+              <p id="js-aboutme" style="margin:0 20px 0 20px;">很惭愧~&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家&lt;br&gt;&lt;br&gt;枯木逢春&lt;br&gt;人无二度再少年</P>
+            </div>
+          </div>    
+          
     	</section>
     
   </div>
