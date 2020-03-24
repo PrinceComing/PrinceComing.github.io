@@ -24,9 +24,15 @@
     <link rel="alternative" href="/atom.xml" title="PrinceComingのBlog" type="application/atom+xml">
   
   
-    <link rel="icon" href="/favicon.png">
+    <!-- <link rel="icon" href="/favicon.png"> -->
+    <link rel="icon" href=" /img/wztb.ico">
   
   <link rel="stylesheet" type="text/css" href="/./main.0cf68a.css">
+  <!-- 旋转头像效果 -->
+  
+    <link rel="stylesheet" type="text/css" href="/./avatarrotation.css">
+    
+  <!-- 结束 -->
   <style type="text/css">
   
     #container.show {
@@ -42,9 +48,11 @@
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
-    <div class="left-col" q-class="show:isShow">
+    <div class="left-col" q-class="show:isShow">     
       
-<div class="overlay" style="background: #4d4d4d"></div>
+<!-- <div class="overlay" style="background: #4d4d4d"></div> -->
+<!-- 头像背景 -->
+<div class="overlay" style="background: url('https://raw.githubusercontent.com/PrinceComing/mypicture/master/img/sky01.png') no-repeat center bottom;background-size: cover;"></div>
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
@@ -902,37 +910,13 @@
 
 
       
-<!-- 文章版权 -->
+<!-- 文章版权声明 -->
       
       
       
-        <div>
-        <blockquote>
-          <strong>本文作者：</strong>
-          
-            王子驾到
-          
-          <br>
-          <strong>本文链接：</strong>
-          http://yoursite.com/2020/03/23/C++%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A801/
-          <br>
-          <strong>版权声明：</strong>
-          本作品采用
-          <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/   当前应用的版权协议地址" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
-          进行许可。转载请注明出处！
-          
-            <br>
-            <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/   当前应用的版权协议地址" target="_blank"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"/></a>
-          
-        </blockquote>
-        
-        
-        <hr>
-          <center><strong>感谢有你，伴我成长。</strong></center>
-        <hr>
-        </div>
+        <div hidden="hidden"></div>
       
-<!--  -->
+<!-- 结束 -->
       
         <div class="page-reward">
           <a href="javascript:;" class="page-reward-btn tooltip-top">
@@ -966,6 +950,14 @@
         </div>
       
     </div>
+<!-- 添加本文结束标记-->
+
+  <div style="text-align:center;color: rgba(168, 169, 170, 0.932);font-size:14px;">
+       -------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------
+       </div>
+  
+  <!-- 添加完成 -->
+
     <div class="article-info article-info-index">
       
       
@@ -980,6 +972,13 @@
 		</ul>
 	</div>
 
+      <!-- 开始添加阅读量-->
+
+  <span id="busuanzi_container_page_pv">
+|  阅读量<span id="busuanzi_value_page_pv"></span>次
+</span>
+
+      <!-- 添加完成 -->
       
 
       
@@ -1132,16 +1131,26 @@ gitment.render('gitment-ctn')
       	<div class="footer-right">
 			  <!-- <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten -->
 			  前路虽长 尤可期许
-			  <!-- # PV方式，单个用户连续点击 n 篇，记录 n 次记录值 -->
-		<!-- <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"> </span>次</span> -->
+
       	</div>
     </div>
   </div>
+  <!-- 引入不蒜子-->
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <!-- 开始添加本站访客数-->
+		  <span id="busuanzi_container_site_pv">
+			  本站总访问量: <span id="busuanzi_value_site_pv"></span>
+		  </span>
+		  <span id="busuanzi_container_site_uv">
+			  本站总访客: <span id="busuanzi_value_site_uv"></span>
+		  </span>
+  <!-- 添加完成 -->
 </footer>
+<!--页面点击小红心-->
+<script type="text/javascript" src="/love.js"></script>
 
 
-<!-- # UV方式，单个用户连续点击 n 篇，记录 1 次记录值 -->
-<!-- <span id="busuanzi_container_site_uv">  本站访客数<span id="busuanzi_value_site_uv"></span>人次</span> -->
+
 
     </div>
     <script>
@@ -1286,20 +1295,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<!-- <div class="aboutme-wrap" id="js-aboutme">很惭愧~&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家&lt;br&gt;&lt;br&gt;枯木逢春&lt;br&gt;人无二度再少年</div> -->
-          <div class="aboutme-wrap">
-            <div style="display:;">
-              <script type="text/javascript" src="https://api.lwl12.com/hitokoto/v1?encode=js&charset=utf-8"></script>
-              <p style="margin:0 20px 0 20px;">
-                <span id="lwlhitokoto">
-                  <script>
-                    lwlhitokoto();
-                  </script>
-                </span>
-              </p>
-              <p id="js-aboutme" style="margin:0 20px 0 20px;">很惭愧~&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家&lt;br&gt;&lt;br&gt;枯木逢春&lt;br&gt;人无二度再少年</P>
-            </div>
-          </div>    
+  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧~&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家&lt;br&gt;&lt;br&gt;枯木逢春&lt;br&gt;人无二度再少年</div>  
           
     	</section>
     
