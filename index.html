@@ -72,7 +72,7 @@
 			</ul>
 		</nav>
 		<nav>
-			总文章数 5
+			总文章数 9
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -181,6 +181,540 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-C++核心编程04" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/30/C++%E6%A0%B8%E5%BF%83%E7%BC%96%E7%A8%8B04/">C++核心编程04</a>
+    </h1>
+  
+
+        
+        <a href="/2020/03/30/C++%E6%A0%B8%E5%BF%83%E7%BC%96%E7%A8%8B04/" class="archive-article-date">
+  	<time datetime="2020-03-30T03:18:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="5-文件操作"><a href="#5-文件操作" class="headerlink" title="5 文件操作"></a>5 文件操作</h2><p>程序运行时产生的数据都属于临时数据，程序一旦运行结束都会被释放</p>
+<p>通过<strong>文件可以将数据持久化</strong></p>
+<p>C++中对文件操作需要包含头文件==<fstream>==</p>
+<p>文件类型分为两种：</p>
+<ol>
+<li><strong>文本文件</strong>：文件以文本的<strong>ASCLL</strong>码形式存储在计算机中</li>
+<li><strong>二进制文件</strong>：文件以文本的<strong>二进制</strong>形式存储在计算机中，用户一般不能直接读懂他们</li>
+</ol>
+<p>操作文件的三大类：</p>
+<ol>
+<li>ofstream: 写操作</li>
+<li>ifstream：读操作</li>
+<li>fstream: 读写操作</li>
+</ol>
+<h3 id="5-1-文本文件"><a href="#5-1-文本文件" class="headerlink" title="5.1 文本文件"></a>5.1 文本文件</h3><p>写文件步骤如下：</p>
+<ol>
+<li><p>包含头文件</p>
+<p><code>#include&lt;fstream&gt;</code></p>
+</li>
+<li><p>创建流对象</p>
+<p><code>ofstream ofs</code>;</p>
+</li>
+<li><p>打开文件</p>
+<p><code>ofs.open(&quot;文件路径&quot;，打开方式)；</code></p>
+</li>
+<li><p>写数据</p>
+<p><code>ofs&lt;&lt;&quot;写入数据&quot;；</code></p>
+</li>
+<li><p>关闭文件</p>
+<p><code>ofs.close();</code></p>
+</li>
+</ol>
+<p>文件打开方式：</p>
+<table>
+<thead>
+<tr>
+<th>打开方式</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ios::in</td>
+<td>为读文件而打开文件</td>
+</tr>
+<tr>
+<td>ios::out</td>
+<td>为写文件而打开文件</td>
+</tr>
+<tr>
+<td>ios::ate</td>
+<td>初始位置：文件尾</td>
+</tr>
+<tr>
+<td>ios::app</td>
+<td>追加方式写文件</td>
+</tr>
+<tr>
+<td>ios::trunc</td>
+<td>如果文件存在先删除，再创建</td>
+</tr>
+<tr>
+<td>ios::binary</td>
+<td>二进制方式</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>注意：文件打开方式可以配合使用，利用|操作符</p>
+<p>例如：用二进制方式写文件 <code>iOS::binary | ios::out</code></p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fstream&gt;  //头文件包含</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//文本文件 写文件</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test01</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//1. 包含头文件 fstream</span></span><br><span class="line">	<span class="comment">//2. 创建流对象</span></span><br><span class="line">	ofstream ofs;</span><br><span class="line">	<span class="comment">//3. 指定打开方式 //可指定文件路径</span></span><br><span class="line">	ofs.<span class="built_in">open</span>(<span class="string">"test.txt"</span>, ios::out);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//4. 写内容</span></span><br><span class="line">	ofs &lt;&lt; <span class="string">"姓名：王平安"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	ofs &lt;&lt; <span class="string">"性别：男"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	ofs &lt;&lt; <span class="string">"年龄：20"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="comment">//关闭文件</span></span><br><span class="line">	ofs.<span class="built_in">close</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	test01();</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>总结：</p>
+<ul>
+<li>文件操作必须包含头文件 fstream</li>
+<li>读文件可以利用 ofstream, 或者fstream类</li>
+<li>打开文件时候需要指定操作文件的路径，以及打开方式</li>
+<li>利用&lt;&lt;可以向文件中写数据</li>
+<li>操作完毕，要关闭文件</li>
+</ul>
+</blockquote>
+        
+      
+<!-- 文章版权声明 -->
+      
+      
+      
+        <div hidden="hidden"></div>
+      
+<!-- 结束 -->
+      
+    </div>
+<!-- 添加本文结束标记-->
+
+  <!-- 添加完成 -->
+
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      <!-- 开始添加阅读量-->
+
+      <!-- 添加完成 -->
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/C-从入门到放弃//" class="article-tag-list-link color5">C++从入门到放弃</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/03/30/C++%E6%A0%B8%E5%BF%83%E7%BC%96%E7%A8%8B04/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-C++核心编程03" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/30/C++%E6%A0%B8%E5%BF%83%E7%BC%96%E7%A8%8B03/">C++核心编程03</a>
+    </h1>
+  
+
+        
+        <a href="/2020/03/30/C++%E6%A0%B8%E5%BF%83%E7%BC%96%E7%A8%8B03/" class="archive-article-date">
+  	<time datetime="2020-03-30T03:14:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="4-类和对象"><a href="#4-类和对象" class="headerlink" title="4 类和对象"></a>4 类和对象</h2><p>C++面向对象的三大特性为：==封装==、==继承==、==多态==</p>
+<p>C++认为==万事万物都皆为对象==，对象上有其属性和行为</p>
+<p>例如： </p>
+<p>人可以作为对象，属性有姓名、年龄、身高、体重···，行为有走、跳、跑、吃饭等等</p>
+<p>具有相同性质的==对象==，我们可以抽象为==类==，人属于人类，车属于车类</p>
+<h3 id="4-1-封装"><a href="#4-1-封装" class="headerlink" title="4.1 封装"></a>4.1 封装</h3><h4 id="4-1-1-封装的意义"><a href="#4-1-1-封装的意义" class="headerlink" title="4.1.1 封装的意义"></a>4.1.1 封装的意义</h4><p>意义：</p>
+<ul>
+<li>将属性和行为作为一个整体，表现生活中的事物</li>
+<li>将属性和行为加以权限控制</li>
+</ul>
+<p>==<strong>封装的意义一</strong>==：</p>
+<p>​    在设计类的时候，属性和行为写在一起，表现事物</p>
+<p><strong>语法</strong>：<code>class 类名{访问权限：属性 / 行为}；</code></p>
+<p>示例1：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//设计一个圆，求圆的周长和面积</span></span><br><span class="line"><span class="comment">//圆周率</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> PI = <span class="number">3.14</span>;</span><br><span class="line"><span class="comment">//设计一个圆类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Circ</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="comment">//访问权限</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="comment">//属性</span></span><br><span class="line">	<span class="keyword">int</span> m_r;	<span class="comment">//圆的半径</span></span><br><span class="line">	<span class="comment">//行为</span></span><br><span class="line">	<span class="comment">//取得圆的面积</span></span><br><span class="line">	<span class="function"><span class="keyword">double</span> <span class="title">getMJ</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> PI * m_r * m_r;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//取得圆的周长</span></span><br><span class="line">	<span class="function"><span class="keyword">double</span> <span class="title">getZC</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">2</span> * PI * m_r; </span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//设计实例圆</span></span><br><span class="line">	Circ c1;</span><br><span class="line">	c1.m_r = <span class="number">10</span>;<span class="comment">//给属性进行赋值</span></span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"圆的周长为："</span> &lt;&lt; c1.getZC() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"圆的面积为："</span> &lt;&lt; c1.getMJ() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>示例2：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="comment">//创建一个学生类，属性有姓名和学号，可以给姓名和学号赋值，可以显示学生的姓名和学号</span></span><br><span class="line"><span class="comment">//类的属性和行为 我们统称为 成员</span></span><br><span class="line"><span class="comment">//属性 成员属性 成员变量</span></span><br><span class="line"><span class="comment">//行为 成员函数 成员方法</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">student</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="comment">//属性</span></span><br><span class="line">	<span class="built_in">string</span> m_name;</span><br><span class="line">	<span class="keyword">int</span> m_age;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//给姓名赋值</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">getName</span><span class="params">(<span class="built_in">string</span> name)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		m_name = name;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">getAge</span><span class="params">(<span class="keyword">int</span> age)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		m_age = age;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//显示函数</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">showstu</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"姓名："</span> &lt;&lt; m_name &lt;&lt; <span class="string">"年龄："</span> &lt;&lt; m_age &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//创建学生实例</span></span><br><span class="line">	student s1;</span><br><span class="line">	s1.m_name=<span class="string">"王平安"</span>;</span><br><span class="line">	s1.m_age=<span class="number">20</span>;</span><br><span class="line">	s1.showstu();</span><br><span class="line"></span><br><span class="line">	student s2;</span><br><span class="line">	s1.getName(<span class="string">"王仙儿"</span>);</span><br><span class="line">	s1.getAge(<span class="number">20</span>);</span><br><span class="line">	s1.showstu();</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>==<strong>封装的意义二</strong>==：</p>
+<p>类的设计时，可以把属性和行为放在不同的权限下，加以控制</p>
+<p>访问权限有三种：</p>
+<ol>
+<li>public          公共权限</li>
+<li>protected   保护权限</li>
+<li>private        私有权限</li>
+</ol>
+<p>示例：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//三种权限</span></span><br><span class="line"><span class="comment">//1.公共权限 public      类内可以访问  类外可以访问</span></span><br><span class="line"><span class="comment">//2.保护权限 protected   类内可以访问  类外不可以访问  子可以访问父的保护内容</span></span><br><span class="line"><span class="comment">//3.私有权限 private     类内可以访问  类外不可以访问  子不可访问父的私有内容</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">person</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">   <span class="comment">//姓名 公共权限</span></span><br><span class="line">   <span class="keyword">public</span>：</span><br><span class="line">       <span class="built_in">string</span> m_name;</span><br><span class="line">   <span class="comment">//汽车 保护权限</span></span><br><span class="line">   <span class="keyword">protected</span>：</span><br><span class="line">       <span class="built_in">string</span> m_car;</span><br><span class="line">   <span class="comment">//密码  私有权限</span></span><br><span class="line">   <span class="keyword">private</span>：</span><br><span class="line">       <span class="keyword">int</span> m_password;</span><br><span class="line">    </span><br><span class="line">   <span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        m_name = <span class="string">"张三"</span>;</span><br><span class="line">        m_car=<span class="string">"轿车"</span>;</span><br><span class="line">        m_password=<span class="number">12344</span>;     </span><br><span class="line">    &#125;       </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    </span><br><span class="line">    system(<span class="string">"pause"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+      
+<!-- 文章版权声明 -->
+      
+      
+      
+        <div hidden="hidden"></div>
+      
+<!-- 结束 -->
+      
+    </div>
+<!-- 添加本文结束标记-->
+
+  <!-- 添加完成 -->
+
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      <!-- 开始添加阅读量-->
+
+      <!-- 添加完成 -->
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/C-从入门到放弃//" class="article-tag-list-link color5">C++从入门到放弃</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/03/30/C++%E6%A0%B8%E5%BF%83%E7%BC%96%E7%A8%8B03/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-C++核心编程02" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/30/C++%E6%A0%B8%E5%BF%83%E7%BC%96%E7%A8%8B02/">C++核心编程02</a>
+    </h1>
+  
+
+        
+        <a href="/2020/03/30/C++%E6%A0%B8%E5%BF%83%E7%BC%96%E7%A8%8B02/" class="archive-article-date">
+  	<time datetime="2020-03-30T03:10:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="3-函数的提高"><a href="#3-函数的提高" class="headerlink" title="3 函数的提高"></a>3 函数的提高</h2><h3 id="3-1-函数默认参数"><a href="#3-1-函数默认参数" class="headerlink" title="3.1 函数默认参数"></a>3.1 函数默认参数</h3><p>在C++中，函数的形象列表中的形参是可以有默认值的。</p>
+<p><strong>语法</strong>：<code>返回值类型  函数名（参数 = 默认值）{}</code></p>
+<p>示例：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">func</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b=<span class="number">10</span>, <span class="keyword">int</span> c=<span class="number">10</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a+b+c;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//1.若果某位置参数有默认值，那么从这个位置往后，从左向右，必须都要有默认值</span></span><br><span class="line"><span class="comment">//2.如果函数声明有默认值，函数实现的时候就不能有默认参数</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">func2</span><span class="params">(<span class="keyword">int</span> a = <span class="number">10</span>,<span class="keyword">int</span> b = <span class="number">10</span>)</span></span>;<span class="comment">//声明</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">func2</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span><span class="comment">//如果函数声明有默认参数，函数实现就不能有默认参数</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a+b;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//如果我们自己传入数据，就用自己的数据，如果没有，那么用默认值</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; func(<span class="number">10</span>) &lt;&lt; <span class="built_in">endl</span>;<span class="comment">//30</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; func(<span class="number">10</span>,<span class="number">20</span>) &lt;&lt; <span class="built_in">endl</span>;<span class="comment">//40</span></span><br><span class="line">    system(<span class="string">"pause"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+      
+<!-- 文章版权声明 -->
+      
+      
+      
+        <div hidden="hidden"></div>
+      
+<!-- 结束 -->
+      
+    </div>
+<!-- 添加本文结束标记-->
+
+  <!-- 添加完成 -->
+
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      <!-- 开始添加阅读量-->
+
+      <!-- 添加完成 -->
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/C-从入门到放弃//" class="article-tag-list-link color5">C++从入门到放弃</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/03/30/C++%E6%A0%B8%E5%BF%83%E7%BC%96%E7%A8%8B02/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-C++核心编程01" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/30/C++%E6%A0%B8%E5%BF%83%E7%BC%96%E7%A8%8B01/">C++核心编程01</a>
+    </h1>
+  
+
+        
+        <a href="/2020/03/30/C++%E6%A0%B8%E5%BF%83%E7%BC%96%E7%A8%8B01/" class="archive-article-date">
+  	<time datetime="2020-03-30T03:04:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-内存分区模型"><a href="#1-内存分区模型" class="headerlink" title="1 内存分区模型"></a>1 内存分区模型</h2><p>C++程序在执行时，将内存大方向划分为**4个区域</p>
+<ul>
+<li>代码区：存放函数体的二进制代码，由操作系统进行管理</li>
+<li>全局区：存放全局变量和静态变量以及常量</li>
+<li>栈区：由编译器自动分配释放，存放函数的参数值，局部变量等</li>
+<li>堆区：由程序员分配和释放，若程序员不释放，程序结束时由操作系统回收</li>
+</ul>
+<p><strong>内存四区的意义：</strong></p>
+<p>不同区域存放的数据，赋予不同的生命周期，给我们更大的灵活编程</p>
+<h3 id="1-1-程序运行前"><a href="#1-1-程序运行前" class="headerlink" title="1.1 程序运行前"></a>1.1 程序运行前</h3><p>在程序编译后，生成了exe可执行程序，<strong>未被执行程序前</strong>分为两个区域</p>
+<p><strong>代码区</strong>：</p>
+<p>​            存放<strong>CPU执行的机器指令</strong></p>
+<p>​            代码区是<strong>共享</strong>的，共享的目的是对于频繁被执行的程序，只需要在内存中有一份代码即可</p>
+<p>​            代码区是<strong>只读</strong>的，使其只读的原因是防止程序意外的地修改了它的指令</p>
+<p><strong>全局区</strong>：</p>
+<p>​            <strong>全局变量</strong>和<strong>静态变量</strong>存放在此</p>
+<p>​            全局区域还包含了<strong>常量区</strong>、<strong>字符串常量</strong>和<strong>其他常量</strong>也存放在此</p>
+<p>​            ==该区域的数据在程序结束后由操作系统释放==</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//全局变量</span></span><br><span class="line"><span class="keyword">int</span> g_a = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> g_b = <span class="number">10</span>;</span><br><span class="line"><span class="comment">//全局常量</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> c_g_a = <span class="number">10</span>；</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> c_g_b = <span class="number">10</span>；</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> main()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//局部变量</span></span><br><span class="line">    <span class="keyword">int</span> a =<span class="number">10</span>;</span><br><span class="line">    <span class="keyword">int</span> b =<span class="number">10</span>;</span><br><span class="line">    <span class="comment">//打印地址</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt;<span class="string">"局部变量a的地址为："</span>&lt;&lt;(<span class="keyword">int</span>)&amp;a&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt;<span class="string">"局部变量b的地址为："</span>&lt;&lt;(<span class="keyword">int</span>)&amp;b&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt;<span class="string">"局部变量g_a的地址为："</span>&lt;&lt;(<span class="keyword">int</span>)&amp;g_a&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt;<span class="string">"局部变量g_b的地址为："</span>&lt;&lt;(<span class="keyword">int</span>)&amp;g_b&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//静态变量</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> s_a = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> s_b = <span class="number">10</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt;<span class="string">"静态变量s_a的地址为："</span>&lt;&lt;(<span class="keyword">int</span>)&amp;s_a&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt;<span class="string">"静态变量s_b的地址为："</span>&lt;&lt;(<span class="keyword">int</span>)&amp;s_b&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="comment">//字符串常量</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt;<span class="string">"字符串常量c_g_a的地址为："</span>&lt;&lt;(<span class="keyword">int</span>)&amp;<span class="string">"hello world"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt;<span class="string">"字符串常量c_g_b的地址为："</span>&lt;&lt;(<span class="keyword">int</span>)&amp;<span class="string">"hello world"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="comment">//全局常量</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt;<span class="string">"全局常量c_g_a的地址为："</span>&lt;&lt;(<span class="keyword">int</span>)&amp;c_g_a&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt;<span class="string">"全局常量c_g_b的地址为："</span>&lt;&lt;(<span class="keyword">int</span>)&amp;c_g_b&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> c_l_a = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> c_l_b = <span class="number">10</span>;</span><br><span class="line">    <span class="comment">//局部常量</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt;<span class="string">"局部常量c_l_a的地址为："</span>&lt;&lt;(<span class="keyword">int</span>)&amp;c_l_a&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt;<span class="string">"局部常量c_l_b的地址为："</span>&lt;&lt;(<span class="keyword">int</span>)&amp;c_l_b&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    </span><br><span class="line">    system(<span class="string">"pause"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>不在全局区中：局部变量、const修饰的局部变量（局部常量）</p>
+<p>全局区：全局变量、静态变量（static关键字）、常量（字符串常量、const修饰的全</p>
+<p>局变量，全局常量）</p>
+</blockquote>
+<p>总结：</p>
+<ul>
+<li>C++中在程序运行前分为全局区和代码区</li>
+<li>代码区特点是共享和只读</li>
+<li>全局变量中存放全局变量、静态变量、常量</li>
+<li>常量区中存放 const修饰的全局常量 和 字符串常量</li>
+</ul>
+        
+      
+<!-- 文章版权声明 -->
+      
+      
+      
+        <div hidden="hidden"></div>
+      
+<!-- 结束 -->
+      
+    </div>
+<!-- 添加本文结束标记-->
+
+  <!-- 添加完成 -->
+
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      <!-- 开始添加阅读量-->
+
+      <!-- 添加完成 -->
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/C-从入门到放弃//" class="article-tag-list-link color5">C++从入门到放弃</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/03/30/C++%E6%A0%B8%E5%BF%83%E7%BC%96%E7%A8%8B01/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-yilia主题左侧随笔小问题”" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
